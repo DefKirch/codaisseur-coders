@@ -44,3 +44,29 @@ export const bootstrapLoginState = () => async (dispatch, getState) => {
   }
   // console.log("Bootstrap token", token);
 };
+
+export const signUpUser =
+  (name, email, password) => async (dispatch, getState) => {
+    try {
+      dispatch(startLoading());
+      const signUpResponse = await axios.post(
+        "https://codaisseur-coders-network.herokuapp.com/signup",
+        {
+          name,
+          email,
+          password,
+        }
+      );
+
+      console.log("SignUpResponse", signUpResponse);
+      const token = signUpResponse.data.jwt;
+      localStorage.setItem("token", token);
+      const userProfile = await axios.get(
+        "https://codaisseur-coders-network.herokuapp.com/me",
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      dispatch(setProfile(userProfile.data));
+    } catch (e) {
+      console.log(e.message);
+    }
+  };

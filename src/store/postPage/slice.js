@@ -20,9 +20,14 @@ const postPageSlice = createSlice({
       state.comments = [...comments];
       state.loading = false;
     },
+    addComment: (state, action) => {
+      state.comments = [...state.comments, action.payload];
+      state.loading = false;
+    },
   },
 });
 
-export const { startLoading, postFullyFetched } = postPageSlice.actions;
+export const { startLoading, postFullyFetched, addComment } =
+  postPageSlice.actions;
 
 export default postPageSlice.reducer;

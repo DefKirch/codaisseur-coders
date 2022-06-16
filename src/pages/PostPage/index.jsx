@@ -1,17 +1,28 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPost } from "../../store/postPage/thunks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { selectFullyFetchedPost } from "../../store/postPage/selectors";
 import { selectPostAndComments } from "../../store/postPage/selectors";
 import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
+import { selectToken } from "../../store/auth/selectors";
+import { postComment } from "../../store/postPage/thunks";
 
 const PostPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const fullPost = useSelector(selectFullyFetchedPost);
   const postData = useSelector(selectPostAndComments);
+  const userToken = useSelector(selectToken);
+  const [comment, setComment] = useState("");
+  console.log("User", userToken);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(postComment(comment, id));
+    setComment("");
+  };
 
   useEffect(() => {
     dispatch(fetchPost(id));
@@ -59,6 +70,27 @@ const PostPage = () => {
                 ))
               : "No comments left behind yet :("}
           </>
+        )}
+        {userToken ? (
+          <div>
+            <h4>Add a comment:</h4>
+            <form onSubmit={handleSubmit}>
+              <p>
+                <label>
+                  <input
+                    type="text"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                  />
+                </label>
+              </p>
+              <p>
+                <button type="submit">Add comment</button>
+              </p>
+            </form>
+          </div>
+        ) : (
+          <p>Log in to place a comment</p>
         )}
         <br />
         <br />

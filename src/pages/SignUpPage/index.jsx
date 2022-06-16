@@ -1,25 +1,36 @@
 import "./styles.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../store/auth/thunks";
+import { signUpUser } from "../../store/auth/thunks";
 import { Link } from "react-router-dom";
 
-const LoginPage = () => {
+const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(loginUser(email, password));
+    dispatch(signUpUser(name, email, password));
     setEmail("");
     setPassword("");
   };
 
   return (
     <div className="LoginPage">
-      <h1>Login</h1>
+      <h1>Sign up</h1>
       <form onSubmit={handleSubmit}>
+        <p>
+          <label>
+            Name:
+            <input
+              type="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
+        </p>
         <p>
           <label>
             Email:
@@ -41,13 +52,13 @@ const LoginPage = () => {
           </label>
         </p>
         <p>
-          <button type="submit">Login</button>
+          <button type="submit">Sign up</button>
         </p>
-        <p>No account yet?</p>
-        <Link to="/signup">Sign up</Link>
+        <p>Already a member?</p>
+        <Link to="/login">Sign in</Link>
       </form>
     </div>
   );
 };
 
-export default LoginPage;
+export default SignUpPage;

@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import PostPage from "./pages/PostPage";
 import LoginPage from "./pages/LoginPage";
 import Toolbar from "./components/Toolbar";
+import SignUpPage from "./pages/SignUpPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/post/:id" element={<PostPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
       </Routes>
     </div>
   );

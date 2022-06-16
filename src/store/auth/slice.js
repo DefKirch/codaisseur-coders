@@ -26,7 +26,7 @@ const authSlice = createSlice({
       state.token = null;
       state.loading = false;
       localStorage.removeItem("token");
-      console.log("Logout action succeeded");
+      console.log("Logout succesfull!");
     },
   },
 });
