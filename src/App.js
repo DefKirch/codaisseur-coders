@@ -8,6 +8,7 @@ import PostPage from "./pages/PostPage";
 import LoginPage from "./pages/LoginPage";
 import Toolbar from "./components/Toolbar";
 import SignUpPage from "./pages/SignUpPage";
+import CreatePostPage from "./pages/CreatePostPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function App() {
         <Route path="/post/:id" element={<PostPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/createpost" element={<CreatePostPage />} />
       </Routes>
     </div>
   );

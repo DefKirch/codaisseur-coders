@@ -2,17 +2,18 @@ import "./styles.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUpUser } from "../../store/auth/thunks";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useNavigationType } from "react-router-dom";
 
 const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(signUpUser(name, email, password));
+    dispatch(signUpUser(name, email, password, navigate));
     setEmail("");
     setPassword("");
   };

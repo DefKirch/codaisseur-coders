@@ -1,0 +1,16 @@
+.Title-Line {
+    display: flex;
+    align-items: center;
+}
+
+.Title-Icon {
+margin-left: 1rem;
+font-size: 1.1rem;   
+}
+
+.Title-Line button {
+    background: none;
+    color: inherit;
+    border: none;
+    cursor: pointer; 
+}

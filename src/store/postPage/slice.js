@@ -14,7 +14,7 @@ const postPageSlice = createSlice({
       state.loading = true;
     },
     postFullyFetched: (state, action) => {
-      const { post, comments } = action.payload;
+      const { post, comments = [] } = action.payload;
       console.log("Post", action.payload);
       state.post = post;
       state.comments = [...comments];

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { startLoading, postFullyFetched, addComment } from "./slice";
 import { API_URL } from "../../config";
+import { Navigate } from "react-router-dom";
 
 export const fetchPost = (id) => async (dispatch, getState) => {
   try {
@@ -41,6 +42,29 @@ export const postComment = (postId, comment) => async (dispatch, getState) => {
     console.log(e.message);
   }
 };
+
+export const createPost =
+  (title, content, navigate) => async (dispatch, getState) => {
+    try {
+      const token = getState().auth.token;
+      const createPostResponse = await axios.post(
+        "https://codaisseur-coders-network.herokuapp.com/posts",
+        {
+          title,
+          content,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      const post = createPostResponse.data;
+      const id = post.id;
+      dispatch(postFullyFetched(post));
+      navigate("/");
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
 
 // Plan:
 // - Make a form on postPage to add a comment(only shows when logged in)

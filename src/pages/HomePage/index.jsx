@@ -14,7 +14,7 @@ const HomePage = () => {
 
   return (
     <div style={{ marginLeft: "50px" }}>
-      <h1>HomePage</h1>
+      <h1>All posts</h1>
       <div>
         {feed.loading
           ? "Loading"

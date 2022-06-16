@@ -1,0 +1,35 @@
+.Create-Post-Page-Container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Create-Post-Page-Header {
+    display: flex;
+    border-top: 1px solid white;
+    background-color: rgb(9, 12, 56);
+    /* width: 45%; */
+    color: white;
+    justify-content: center;
+}
+
+.Create-Post-Page-Body {
+    display: flex;
+    background-color: lightgray;
+    justify-content: left;
+    align-items: flex-start;
+    height: 41rem;
+}
+
+.Create-Post-Page-Body input, h2 {
+    font-size: 3rem;
+    width: 25rem;
+    height: 4rem;
+    margin-left: 10rem;
+} 
+
+.Create-Post-Page-Body button {
+    font-size: 2rem;
+    margin-left: 10rem;
+}

@@ -2,16 +2,17 @@ import "./styles.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../store/auth/thunks";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(loginUser(email, password));
+    dispatch(loginUser(email, password, navigate));
     setEmail("");
     setPassword("");
   };

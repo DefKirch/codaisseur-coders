@@ -8,6 +8,8 @@ import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
 import { selectToken } from "../../store/auth/selectors";
 import { postComment } from "../../store/postPage/thunks";
+import { MdDelete } from "react-icons/md";
+import "./styles.css";
 
 const PostPage = () => {
   const dispatch = useDispatch();
@@ -35,7 +37,12 @@ const PostPage = () => {
           <p>"Loading"</p>
         ) : (
           <>
-            <h1>{postData.post.title}</h1>
+            <div className="Title-Line">
+              <h1>{postData.post.title}</h1>
+              <button>
+                <MdDelete className="Title-Icon" text="Delete Post" />
+              </button>
+            </div>
             <div style={{ display: "flex" }}>
               <p style={{ marginRight: "10px" }}>
                 By <strong>{postData.post.developer.name}</strong>
@@ -57,7 +64,7 @@ const PostPage = () => {
             </div>
             <ReactMarkdown children={postData.post.content} />
 
-            <h2>Comments</h2>
+            <h3>Comments</h3>
             {postData.comment.length
               ? postData.comment.map((comment) => (
                   <>

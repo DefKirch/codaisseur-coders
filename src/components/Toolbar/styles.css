@@ -10,9 +10,9 @@
 
 .Toolbar p {
     text-decoration: none;
-    color: black;
-    background-color: white;
     padding: 5px;
+    color: white;
+    /* font */
 }
 
 .LogOut {
