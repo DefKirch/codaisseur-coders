@@ -21,9 +21,22 @@ const authSlice = createSlice({
       state.me = action.payload;
       state.loading = false;
     },
+    logoutUser: (state, action) => {
+      state.me = null;
+      state.token = null;
+      state.loading = false;
+      localStorage.removeItem("token");
+      console.log("Logout action succeeded");
+    },
   },
 });
 
-export const { setToken, startLoading, setProfile } = authSlice.actions;
+export const { setToken, startLoading, setProfile, logoutUser } =
+  authSlice.actions;
 
 export default authSlice.reducer;
+
+// Make the logout button work!
+// Setup an action in the slice to:
+// 1) clear the redux state
+// 2) clear the localStorage

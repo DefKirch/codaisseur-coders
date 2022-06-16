@@ -10,11 +10,9 @@ const LoginPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("TODO login with", email, password);
     dispatch(loginUser(email, password));
     setEmail("");
     setPassword("");
-    // TODO:
   };
 
   return (
